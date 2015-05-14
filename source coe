@@ -1,0 +1,53 @@
+            int i, j, temp;
+            int[] results = new int[6];
+            int[] inputs = new int[6];
+            Random rand = new Random();
+            string str = String.Empty;
+
+            for (i = 0; i < results.Length; i++)
+            {
+                Console.WriteLine("請輸入一個1~42的數字:");
+                int input = Convert.ToInt32(Console.ReadLine());
+                inputs[i] = input;
+            }
+
+            for (i = 0; i < results.Length; i++) 
+            {
+                temp = rand.Next(42) + 1;
+
+                j = 0;
+                while (j < i)
+                {
+                    if (results[j] == temp)
+                    {
+                        temp = rand.Next(42) + 1;
+                        j = 0;
+                    }
+                    else
+                    {
+                        j++;
+                    }
+                }
+
+                results[i] = temp;
+            }
+
+            for (i = 0; i < results.Length; i++)
+            {
+                str = str + String.Format("\n第{0:00}個號碼是: {1:00}\n", (i + 1), results[i]);
+            }
+
+            for (i = 0; i < results.Length; i++)
+            {
+                for (j = 0; j < results.Length; j++)
+                {
+                    if (inputs[i] == results[j])
+                    {
+                        str = str + String.Format("\n中第{0:00}個號碼: {1:00}\n", (j + 1), results[j]);
+                    }
+                }
+            }
+
+            Console.Write(str);
+
+            Console.Read();
